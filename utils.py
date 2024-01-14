@@ -53,5 +53,22 @@ def decryption_key_helper(a, m):
     else:
         return x % m
 
+def additional_layer_test(lst, e):
+    random.seed(e)
+    print(lst)
+    rc = random.randint(1000000, 9000000)
+    print(rc)
+    rh = random.randint(13,23)
+    print("rh", rh)
+    lstch = [ch+rh if ch<rh else (ch-rh)*-1 for ch in lst]
+    print(lstch)
+    random.seed(e)
+    rb = random.randint(13,23)
+    print("rb", rb)
+    lstc = [ch-rb if ch>=0 else -ch+rb for ch in lstch]
+    print(lstc)
+    print(lst==lstc)
+
 if __name__ == "__main__":
-    print(gen_primes(100000, 500000))
+    # print(gen_primes(100000, 500000))
+    additional_layer_test([10,11,12,123,1234], 10796569)
